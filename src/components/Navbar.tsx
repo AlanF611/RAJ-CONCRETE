@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { nav, site } from '@/data/site';
-import Logo from './Logo';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,7 +36,30 @@ export default function Navbar() {
     >
       <div className="container-max">
         <div className="flex h-20 items-center justify-between">
-          <Logo />
+          
+          {/* LOGO INTEGRADO DIRECTAMENTE AQUÍ */}
+          <Link to="/" className="group flex items-center gap-3">
+            <img 
+              src="/img/logo.png" 
+              alt={`${site.name} Logo`} 
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const fallback = document.getElementById('nav-logo-fallback');
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+            {/* Texto de respaldo por si la imagen falla */}
+            <div id="nav-logo-fallback" className="hidden flex-col">
+              <span className="font-display text-xl font-extrabold tracking-tight text-white uppercase leading-none">
+                {site.shortName.split(' ')[0]}
+                <span className="text-accent-500">.</span>
+              </span>
+              <span className="text-[10px] font-semibold tracking-[0.25em] text-charcoal-400 uppercase mt-1">
+                {site.shortName.split(' ').slice(1).join(' ') || 'Concrete'}
+              </span>
+            </div>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex">

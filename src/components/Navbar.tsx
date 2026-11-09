@@ -35,23 +35,25 @@ export default function Navbar() {
       }`}
     >
       <div className="container-max">
-        <div className="flex h-20 items-center justify-between">
+        {/* Aumentamos la altura del navbar a h-24 (96px) para que el logo vertical respire */}
+        <div className="flex h-24 items-center justify-between">
           
-          {/* LOGO INTEGRADO DIRECTAMENTE AQUÍ */}
-          <Link to="/" className="group flex items-center gap-3">
+          {/* LOGO INTEGRADO */}
+          <Link to="/" className="group flex items-center h-full py-2">
             <img 
               src="/img/logo.png" 
               alt={`${site.name} Logo`} 
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              // h-16 (64px) en móvil y h-20 (80px) en escritorio. Como el navbar mide 96px, se ve perfecto.
+              className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const fallback = document.getElementById('nav-logo-fallback');
                 if (fallback) fallback.style.display = 'flex';
               }}
             />
-            {/* Texto de respaldo por si la imagen falla */}
+            {/* Respaldo en caso de que la imagen no cargue */}
             <div id="nav-logo-fallback" className="hidden flex-col">
-              <span className="font-display text-xl font-extrabold tracking-tight text-white uppercase leading-none">
+              <span className="font-display text-2xl font-extrabold tracking-tight text-white uppercase leading-none">
                 {site.shortName.split(' ')[0]}
                 <span className="text-accent-500">.</span>
               </span>
@@ -114,7 +116,8 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-x-0 top-20 z-40 origin-top overflow-hidden bg-ink-950/98 backdrop-blur-xl transition-all duration-400 lg:hidden ${
+        // Ajustamos top-20 a top-24 para que empate con la nueva altura del navbar
+        className={`fixed inset-x-0 top-24 z-40 origin-top overflow-hidden bg-ink-950/98 backdrop-blur-xl transition-all duration-400 lg:hidden ${
           open ? 'max-h-[80vh] opacity-100' : 'pointer-events-none max-h-0 opacity-0'
         }`}
       >
@@ -153,7 +156,7 @@ export default function Navbar() {
       {/* Backdrop */}
       {open && (
         <div
-          className="fixed inset-0 top-20 z-30 bg-black/50 lg:hidden"
+          className="fixed inset-0 top-24 z-30 bg-black/50 lg:hidden"
           onClick={() => setOpen(false)}
           aria-hidden
         />

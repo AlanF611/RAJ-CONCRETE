@@ -4,14 +4,27 @@ import CTASection from '@/components/CTASection';
 import { industries } from '@/data/industries';
 
 export default function Industries() {
+  // Arreglo con fotos reales de tus proyectos para representar cada industria
+  const industryImages = [
+    '/img/05_Projects_Gallery/photo_18.jpeg', // Para la 1ra industria (Ej. Industrial)
+    '/img/05_Projects_Gallery/photo_24.jpeg', // Para la 2da industria (Ej. Comercial)
+    '/img/02_About_Us/photo_25.jpeg',         // Para la 3ra industria (Ej. Residencial)
+    '/img/05_Projects_Gallery/photo_33.jpeg', // Para la 4ta industria (Ej. Institucional)
+    '/img/03_Structural_Concrete/photo_27.jpeg', // Para la 5ta industria
+    '/img/04_Site_Concrete/photo_13.jpeg',       // Para la 6ta industria
+    '/img/05_Projects_Gallery/photo_42.jpeg',    // Para la 7ma industria
+    '/img/03_Structural_Concrete/photo_43.jpeg', // Para la 8va industria
+  ];
+
   return (
     <>
       <PageHero
         eyebrow="Industries We Serve"
         title={<>Building <span className="text-accent-400">Across Industries.</span></>}
-        description="TOP Construction Inc. provides structural and site concrete services across a wide range of project types, supporting developers, general contractors, and property owners."
-        image="https://images.pexels.com/photos/4534504/pexels-photo-4534504.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="Contemporary office buildings in the city"
+        description="RAJ Concrete provides structural and site concrete services across a wide range of project types, supporting developers, general contractors, and property owners."
+        // Imagen del Hero tomada de tu carpeta de proyectos
+        image="/img/05_Projects_Gallery/photo_46.jpeg"
+        alt="Obra de RAJ Concrete"
         crumbs={[{ label: 'Industries' }]}
       />
 
@@ -20,7 +33,7 @@ export default function Industries() {
         <div className="container-max">
           <Reveal>
             <p className="text-sm leading-relaxed text-charcoal-400">
-              The markets below represent areas TOP Construction Inc. is equipped to serve. Project scope,
+              The markets below represent areas RAJ Concrete is equipped to serve. Project scope,
               availability, and confirmed portfolio references are subject to confirmation on a
               per-project basis.
             </p>
@@ -32,6 +45,10 @@ export default function Industries() {
       {industries.map((ind, i) => {
         const Icon = ind.icon;
         const reversed = i % 2 === 1;
+        
+        // Asigna la imagen local según el índice de la industria
+        const currentImage = industryImages[i] || ind.image;
+
         return (
           <section
             key={ind.id}
@@ -43,8 +60,8 @@ export default function Industries() {
                 <Reveal className={reversed ? 'lg:order-2' : ''}>
                   <div className="img-zoom relative aspect-[5/4] overflow-hidden border border-charcoal-800">
                     <img
-                      src={ind.image}
-                      alt={ind.alt}
+                      src={currentImage}
+                      alt={ind.alt || ind.title}
                       loading="lazy"
                       className="h-full w-full object-cover"
                     />

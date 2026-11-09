@@ -7,14 +7,22 @@ import CTASection from '@/components/CTASection';
 import { serviceCategories } from '@/data/services';
 
 export default function Services() {
+  // Rutas exactas basadas en tus capturas de GitHub
+  const serviceImages = [
+    '/img/03_Structural_Concrete/photo_03.jpeg', // Imagen para Structural Concrete
+    '/img/04_Site_Concrete/photo_01.jpeg',       // Imagen para Site Concrete
+    '/img/05_Projects_Gallery/photo_07.jpeg',    // Imagen para Decorative/Projects
+  ];
+
   return (
     <>
       <PageHero
         eyebrow="Our Services"
         title={<>Concrete Expertise.<br /><span className="text-accent-400">Built to Perform.</span></>}
-        description="TOP Construction Inc. provides structural and site concrete services across a wide range of project types, supporting developers, general contractors, and property owners."
-        image="https://images.pexels.com/photos/37121400/pexels-photo-37121400.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="Workers pouring concrete with a cement mixer truck"
+        description="RAJ Concrete provides structural and site concrete services across a wide range of project types, supporting developers, general contractors, and property owners."
+        // Imagen del Hero tomada de tu carpeta de Structural Concrete
+        image="/img/03_Structural_Concrete/photo_14.jpeg"
+        alt="Trabajadores vaciando concreto con una bomba"
         crumbs={[{ label: 'Services' }]}
       />
 
@@ -38,6 +46,10 @@ export default function Services() {
       {serviceCategories.map((cat, i) => {
         const Icon = cat.icon;
         const reversed = i % 2 === 1;
+        
+        // Si la categoría tiene una imagen local asignada, la usa. Si no, usa la original.
+        const currentImage = serviceImages[i] || cat.image;
+
         return (
           <section
             key={cat.id}
@@ -50,7 +62,7 @@ export default function Services() {
                 <Reveal className={reversed ? 'lg:order-2' : ''}>
                   <div className="img-zoom relative aspect-[5/4] overflow-hidden border border-charcoal-800">
                     <img
-                      src={cat.image}
+                      src={currentImage}
                       alt={cat.alt}
                       loading="lazy"
                       className="h-full w-full object-cover"

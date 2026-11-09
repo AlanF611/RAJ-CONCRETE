@@ -48,9 +48,10 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact Us"
         title={<>Let's Build <span className="text-accent-400">Something Together.</span></>}
-        description="Have a concrete construction project in mind? Contact TOP Construction Inc. to discuss your requirements and request a project estimate."
-        image="https://images.pexels.com/photos/8469999/pexels-photo-8469999.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="Architect in safety gear holding blueprints"
+        description="Have a concrete construction project in mind? Contact RAJ Concrete to discuss your requirements and request a project estimate."
+        // Usando una foto local de tu galería para el Hero
+        image="/img/05_Projects_Gallery/photo_42.jpeg"
+        alt="Equipo de RAJ Concrete en obra"
         crumbs={[{ label: 'Contact' }]}
       />
 
@@ -69,7 +70,7 @@ export default function Contact() {
                   <CheckCircle2 className="h-12 w-12 text-accent-400" />
                   <h3 className="font-display text-xl font-bold text-white">Request Received</h3>
                   <p className="max-w-sm text-sm text-charcoal-300">
-                    Thank you for reaching out to TOP Construction Inc. A member of our team will contact
+                    Thank you for reaching out to RAJ Concrete. A member of our team will contact
                     you shortly to discuss your project.
                   </p>
                   <button
@@ -142,7 +143,7 @@ export default function Contact() {
                     <Send className="h-4 w-4" />
                   </button>
                   <p className="text-xs text-charcoal-500">
-                    By submitting, you agree to be contacted by TOP Construction Inc. regarding your project inquiry.
+                    By submitting, you agree to be contacted by RAJ Concrete regarding your project inquiry.
                   </p>
                 </form>
               )}
@@ -160,7 +161,8 @@ export default function Contact() {
                     <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
                       <div className="text-xs uppercase tracking-[0.15em] text-charcoal-500">Phone</div>
-                      <a href={site.phoneHref} className="hover:text-white">{site.phone}</a>
+                      {/* Teléfono actualizado */}
+                      <a href="tel:3239708317" className="hover:text-white">323-970-8317</a>
                     </div>
                   </li>
                   <li className="flex gap-3">
@@ -174,8 +176,9 @@ export default function Contact() {
                     <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
                       <div className="text-xs uppercase tracking-[0.15em] text-charcoal-500">Office Address</div>
-                      <p>{site.address.line1}, {site.address.line2}</p>
-                      <p>{site.address.city}, {site.address.state} {site.address.zip}</p>
+                      {/* Dirección actualizada */}
+                      <p>411 E Huntington Dr Ste107 #1008</p>
+                      <p>Arcadia, CA 91006</p>
                     </div>
                   </li>
                   <li className="flex gap-3">

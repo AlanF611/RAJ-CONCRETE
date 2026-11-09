@@ -15,12 +15,13 @@ const values = [
 export default function About() {
   return (
     <>
+      {/* Hero con foto local de obra (photo_04) */}
       <PageHero
-        eyebrow="About TOP Construction Inc."
+        eyebrow="About RAJ Concrete"
         title={<>Built on Experience.<br /><span className="text-accent-400">Driven by Excellence.</span></>}
         description="Over 20 years of hands-on experience specializing in structural and site concrete."
-        image="https://images.pexels.com/photos/19408681/pexels-photo-19408681.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="Workers building a foundation with rebar at a construction site"
+        image="/img/02_About_Us/photo_04.jpeg"
+        alt="Trabajador de RAJ Concrete en una obra de cimentación"
         crumbs={[{ label: 'About Us' }]}
       />
 
@@ -34,7 +35,7 @@ export default function About() {
           <Reveal delay={120} className="lg:col-span-7">
             <div className="space-y-5 text-lg leading-relaxed text-charcoal-300">
               <p>
-                TOP Construction Inc. is a trusted concrete contractor with over 20 years of hands-on
+                RAJ Concrete is a trusted concrete contractor with over 20 years of hands-on
                 experience specializing in structural concrete and site concrete.
               </p>
               <p>
@@ -114,21 +115,21 @@ export default function About() {
           </div>
           <Reveal delay={120}>
             <p className="mt-12 max-w-3xl text-lg leading-relaxed text-charcoal-300">
-              By investing in our people and our processes, TOP Construction Inc. seeks to set the standard
+              By investing in our people and our processes, RAJ Concrete seeks to set the standard
               for reliable, professional concrete construction in the U.S.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Our Experience */}
+      {/* Our Experience (photo_25: Vaciado de losa residencial) */}
       <section className="relative overflow-hidden bg-ink-950 section-pad">
         <div className="container-max grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div className="img-zoom relative aspect-[4/3] overflow-hidden border border-charcoal-800">
               <img
-                src="https://images.pexels.com/photos/16227443/pexels-photo-16227443.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Aerial view of a construction site"
+                src="/img/02_About_Us/photo_25.jpeg"
+                alt="Equipo de RAJ Concrete vaciando concreto en una losa"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
@@ -160,7 +161,7 @@ export default function About() {
           <Reveal>
             <div className="max-w-2xl">
               <span className="eyebrow">Why Choose Us</span>
-              <h2 className="heading-lg mt-5">Reasons clients rely on TOP Construction.</h2>
+              <h2 className="heading-lg mt-5">Reasons clients rely on RAJ Concrete.</h2>
             </div>
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -183,9 +184,10 @@ export default function About() {
         </div>
       </section>
 
+      {/* CTA Final */}
       <CTASection
         eyebrow="Partner With Us"
-        title="Experience the TOP Construction difference."
+        title="Experience the RAJ Concrete difference."
         description="Let our team bring discipline, quality, and safety to your next concrete project."
         primaryLabel="Request a Quote"
         secondaryLabel="View Our Services"

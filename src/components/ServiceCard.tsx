@@ -3,15 +3,26 @@ import { ArrowRight } from 'lucide-react';
 import type { ServiceCategory } from '@/data/services';
 import Reveal from './Reveal';
 
+// Arreglo con las mismas rutas que usamos en Services.jsx
+const localServiceImages = [
+  '/img/03_Structural_Concrete/photo_03.jpeg',
+  '/img/04_Site_Concrete/photo_01.jpeg',
+  '/img/05_Projects_Gallery/photo_07.jpeg',
+];
+
 export default function ServiceCard({ category, index = 0 }: { category: ServiceCategory; index?: number }) {
   const Icon = category.icon;
+  
+  // Asigna la imagen local según el índice, si no existe usa la original
+  const currentImage = localServiceImages[index] || category.image;
+
   return (
     <Reveal delay={index * 100}>
       <article className="group relative flex h-full flex-col overflow-hidden border border-charcoal-800 bg-charcoal-950 transition-all duration-500 hover:border-accent-500/50">
         {/* Image */}
         <div className="img-zoom relative aspect-[16/10] overflow-hidden">
           <img
-            src={category.image}
+            src={currentImage}
             alt={category.alt}
             loading="lazy"
             className="h-full w-full object-cover"

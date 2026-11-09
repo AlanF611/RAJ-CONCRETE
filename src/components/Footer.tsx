@@ -1,28 +1,28 @@
 import { Link } from 'react-router-dom';
 import { site } from '@/data/site';
-// Importa aquí los iconos que uses en tu footer (Facebook, Instagram, etc.)
 
 export default function Footer() {
   return (
     <footer className="border-t border-charcoal-800 bg-ink-950">
       <div className="container-max grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         
-        {/* LOGO Y DESCRIPCIÓN INTEGRADOS DIRECTAMENTE AQUÍ */}
+        {/* LOGO Y DESCRIPCIÓN */}
         <div className="lg:col-span-1">
-          <Link to="/" className="group flex items-center gap-3">
+          <Link to="/" className="group flex items-center">
             <img 
               src="/img/logo.png" 
               alt={`${site.name} Logo`} 
-              className="h-10 w-auto object-contain"
+              // h-24 (96px) en el footer para que se vea imponente
+              className="h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const fallback = document.getElementById('footer-logo-fallback');
                 if (fallback) fallback.style.display = 'flex';
               }}
             />
-            {/* Texto de respaldo por si la imagen falla */}
+            {/* Respaldo en caso de que la imagen no cargue */}
             <div id="footer-logo-fallback" className="hidden flex-col">
-              <span className="font-display text-xl font-extrabold tracking-tight text-white uppercase leading-none">
+              <span className="font-display text-2xl font-extrabold tracking-tight text-white uppercase leading-none">
                 {site.shortName.split(' ')[0]}
                 <span className="text-accent-500">.</span>
               </span>

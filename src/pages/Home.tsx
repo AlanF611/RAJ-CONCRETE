@@ -42,7 +42,8 @@ export default function Home() {
         <div className="container-max relative z-10 pt-32 pb-20">
           <div className="max-w-4xl">
             <Reveal delay={100}>
-              <span className="eyebrow">TOP Construction Inc. &middot; Concrete Contractor</span>
+              {/* Nombre de la empresa actualizado */}
+              <span className="eyebrow">RAJ Concrete &middot; Concrete Contractor</span>
             </Reveal>
             <Reveal delay={200}>
               <h1 className="heading-xl mt-6">
@@ -295,7 +296,8 @@ export default function Home() {
         <div className="container-max">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-4">
-              <span className="eyebrow">Why TOP Construction</span>
+              {/* Nombre de la empresa actualizado */}
+              <span className="eyebrow">Why RAJ Concrete</span>
               <h2 className="heading-lg mt-5">Built on results, not promises.</h2>
               <p className="mt-5 text-base leading-relaxed text-charcoal-300">
                 Our reputation is built on dependable workmanship, disciplined execution, and relationships

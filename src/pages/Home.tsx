@@ -39,8 +39,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/40" />
         </div>
 
-        <div className="container-max relative z-10 pt-32">
-          <div className="max-w-3xl">
+        <div className="container-max relative z-10 pt-32 pb-20">
+          <div className="max-w-4xl">
             <Reveal delay={100}>
               <span className="eyebrow">TOP Construction Inc. &middot; Concrete Contractor</span>
             </Reveal>
@@ -67,27 +67,25 @@ export default function Home() {
                 </Link>
               </div>
             </Reveal>
-          </div>
-        </div>
 
-        {/* Stats bar */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-charcoal-800 bg-ink-950/80 backdrop-blur-md">
-          <div className="container-max grid grid-cols-2 divide-x divide-charcoal-800 md:grid-cols-4">
-            {[
-              { value: '20+', label: 'Years of Experience' },
-              { value: '3', label: 'Core Service Lines' },
-              { value: '8+', label: 'Industries Served' },
-              { value: '100%', label: 'Commitment to Safety' },
-            ].map((s, i) => (
-              <Reveal key={s.label} delay={i * 100}>
-                <div className="px-6 py-6 text-center md:py-8">
-                  <div className="font-display text-3xl font-extrabold text-white md:text-4xl">{s.value}</div>
-                  <div className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-charcoal-400">
-                    {s.label}
+            {/* Stats integrados en el Hero */}
+            <Reveal delay={550}>
+              <div className="mt-16 grid grid-cols-2 gap-8 border-t border-charcoal-800/50 pt-8 sm:grid-cols-4">
+                {[
+                  { value: '20+', label: 'Years of Experience' },
+                  { value: '3', label: 'Core Service Lines' },
+                  { value: '8+', label: 'Industries Served' },
+                  { value: '100%', label: 'Commitment to Safety' },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div className="font-display text-3xl font-extrabold text-white md:text-4xl">{s.value}</div>
+                    <div className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-charcoal-400">
+                      {s.label}
+                    </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

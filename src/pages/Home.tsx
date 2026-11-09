@@ -8,17 +8,32 @@ import { industries } from '@/data/industries';
 import { projects } from '@/data/projects';
 
 export default function Home() {
+  // Rutas actualizadas según tu carpeta en GitHub
+  const localProjectsImages = [
+    '/img/01_Home/photo_07.jpeg', // Terreno (Proyecto 1)
+    '/img/01_Home/photo_12.jpeg', // Varillas (Proyecto 2)
+    '/img/01_Home/photo_24.jpeg', // Estructura metálica (Proyecto 3)
+  ];
+
   return (
     <>
-      {/* ===== HERO ===== */}
+      {/* ===== HERO CON VIDEO DE FONDO ===== */}
       <section className="relative flex min-h-screen items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/2469/building-construction-building-site-constructing.jpg?auto=compress&cs=tinysrgb&w=1600"
-            alt="Concrete being poured from a mixer truck at a construction site"
+          {/* Video de fondo desde tu carpeta */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/img/01_Home/photo_37.jpeg" // Imagen de respaldo (losa)
             className="h-full w-full object-cover"
-            loading="eager"
-          />
+          >
+            <source src="/img/01_Home/nuevo.mp4" type="video/mp4" />
+            Tu navegador no soporta video HTML5.
+          </video>
+          
+          {/* Capas de superposición para que el texto sea legible */}
           <div className="absolute inset-0 bg-ink-950/75" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/70 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/40" />
@@ -109,15 +124,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== EXPERIENCE HIGHLIGHT ===== */}
+      {/* ===== EXPERIENCE HIGHLIGHT (PHOTO 37: Vaciado de losa) ===== */}
       <section className="relative overflow-hidden bg-ink-950 section-pad">
         <div className="container-max">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <Reveal>
               <div className="img-zoom relative aspect-[4/5] overflow-hidden border border-charcoal-800">
                 <img
-                  src="https://images.pexels.com/photos/37733181/pexels-photo-37733181.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                  alt="Worker on a reinforced concrete foundation"
+                  src="/img/01_Home/photo_37.jpeg"
+                  alt="Trabajadores vaciando concreto en una losa con varillas"
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
@@ -230,7 +245,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FEATURED PROJECTS ===== */}
+      {/* ===== FEATURED PROJECTS (PHOTOS 07, 12, 24) ===== */}
       <section className="section-pad bg-charcoal-950">
         <div className="container-max">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -254,7 +269,7 @@ export default function Home() {
                 <Link to="/projects" className="group block">
                   <div className="img-zoom relative aspect-[4/3] overflow-hidden border border-charcoal-800">
                     <img
-                      src={p.image}
+                      src={localProjectsImages[i] || p.image}
                       alt={p.alt}
                       loading="lazy"
                       className="h-full w-full object-cover"

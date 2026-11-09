@@ -9,19 +9,44 @@ export default function Projects() {
   const [active, setActive] = useState<(typeof projectCategories)[number]>('All');
   const [selected, setSelected] = useState<Project | null>(null);
 
+  // Arreglo con las imágenes locales de tu galería de proyectos
+  const galleryImages = [
+    '/img/05_Projects_Gallery/photo_07.jpeg',
+    '/img/05_Projects_Gallery/photo_12.jpeg',
+    '/img/05_Projects_Gallery/photo_18.jpeg',
+    '/img/05_Projects_Gallery/photo_24.jpeg',
+    '/img/05_Projects_Gallery/photo_25.jpeg',
+    '/img/05_Projects_Gallery/photo_33.jpeg',
+    '/img/05_Projects_Gallery/photo_37.jpeg',
+    '/img/05_Projects_Gallery/photo_42.jpeg',
+    '/img/05_Projects_Gallery/photo_43.jpeg',
+    '/img/05_Projects_Gallery/photo_46.jpeg',
+    '/img/05_Projects_Gallery/photo_53.jpeg',
+    '/img/05_Projects_Gallery/photo_58.jpeg',
+  ];
+
   const filtered = useMemo(
     () => (active === 'All' ? projects : projects.filter((p) => p.category === active)),
     [active]
   );
+
+  // Función para obtener la imagen local basada en el ID o índice del proyecto
+  const getProjectImage = (project: Project) => {
+    // Busca el índice del proyecto en el arreglo original
+    const originalIndex = projects.findIndex(p => p.id === project.id);
+    // Si existe en el arreglo local, usa esa foto, sino usa la original
+    return galleryImages[originalIndex] || project.image;
+  };
 
   return (
     <>
       <PageHero
         eyebrow="Project Portfolio"
         title={<>Built to Last.<br /><span className="text-accent-400">Proven Through Every Project.</span></>}
-        description="A selection of structural and site concrete projects representative of the work TOP Construction Inc. delivers."
-        image="https://images.pexels.com/photos/34017011/pexels-photo-34017011.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="Aerial view of a bustling construction site"
+        description="A selection of structural and site concrete projects representative of the work RAJ Concrete delivers."
+        // Imagen del Hero tomada de tu galería
+        image="/img/05_Projects_Gallery/photo_53.jpeg"
+        alt="Vista aérea de una obra de RAJ Concrete"
         crumbs={[{ label: 'Projects' }]}
       />
 
@@ -48,40 +73,44 @@ export default function Projects() {
 
           {/* Gallery */}
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80}>
-                <button
-                  onClick={() => setSelected(p)}
-                  className="group block w-full text-left"
-                  aria-label={`View details for ${p.title}`}
-                >
-                  <div className="img-zoom relative aspect-[4/3] overflow-hidden border border-charcoal-800">
-                    <img
-                      src={p.image}
-                      alt={p.alt}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent" />
-                    <span className="absolute left-4 top-4 bg-accent-500 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
-                      {p.category}
-                    </span>
-                    <span className="absolute bottom-4 right-4 grid h-10 w-10 place-items-center border border-white/20 bg-ink-950/70 backdrop-blur transition-all group-hover:border-accent-500 group-hover:bg-accent-500">
-                      <ArrowRight className="h-4 w-4 text-white transition-transform group-hover:rotate-[-45deg]" />
-                    </span>
-                  </div>
-                  <div className="mt-5">
-                    <h3 className="font-display text-lg font-bold text-white group-hover:text-accent-400 transition-colors">
-                      {p.title}
-                    </h3>
-                    <p className="mt-2 flex items-center gap-1.5 text-sm text-charcoal-400">
-                      <MapPin className="h-3.5 w-3.5" />
-                      {p.location}
-                    </p>
-                  </div>
-                </button>
-              </Reveal>
-            ))}
+            {filtered.map((p, i) => {
+              const imageSrc = getProjectImage(p);
+              
+              return (
+                <Reveal key={p.id} delay={i * 80}>
+                  <button
+                    onClick={() => setSelected(p)}
+                    className="group block w-full text-left"
+                    aria-label={`View details for ${p.title}`}
+                  >
+                    <div className="img-zoom relative aspect-[4/3] overflow-hidden border border-charcoal-800">
+                      <img
+                        src={imageSrc}
+                        alt={p.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent" />
+                      <span className="absolute left-4 top-4 bg-accent-500 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
+                        {p.category}
+                      </span>
+                      <span className="absolute bottom-4 right-4 grid h-10 w-10 place-items-center border border-white/20 bg-ink-950/70 backdrop-blur transition-all group-hover:border-accent-500 group-hover:bg-accent-500">
+                        <ArrowRight className="h-4 w-4 text-white transition-transform group-hover:rotate-[-45deg]" />
+                      </span>
+                    </div>
+                    <div className="mt-5">
+                      <h3 className="font-display text-lg font-bold text-white group-hover:text-accent-400 transition-colors">
+                        {p.title}
+                      </h3>
+                      <p className="mt-2 flex items-center gap-1.5 text-sm text-charcoal-400">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {p.location}
+                      </p>
+                    </div>
+                  </button>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -110,7 +139,7 @@ export default function Projects() {
           >
             {/* Image */}
             <div className="relative aspect-[16/10] overflow-hidden">
-              <img src={selected.image} alt={selected.alt} className="h-full w-full object-cover" />
+              <img src={getProjectImage(selected)} alt={selected.alt} className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 to-transparent" />
               <button
                 onClick={() => setSelected(null)}
@@ -136,8 +165,7 @@ export default function Projects() {
               </div>
               <p className="mt-6 text-base leading-relaxed text-charcoal-300">{selected.description}</p>
               <p className="mt-6 text-xs leading-relaxed text-charcoal-500">
-                Project details and imagery are placeholders and can be replaced with confirmed project
-                information.
+                Project details and imagery are representative of RAJ Concrete's work.
               </p>
             </div>
           </div>
